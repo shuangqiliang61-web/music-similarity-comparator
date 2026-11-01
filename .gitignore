@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+
+# 项目内部/临时文件
+.workbuddy/
+demo_*.wav
+
+# 操作系统
+Thumbs.db
+.DS_Store
