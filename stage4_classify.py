@@ -64,11 +64,11 @@ def cosine_sim(a, b):
 def classify(sim):
     """按阈值返回类别标签（英文，论文可用）"""
     if sim >= TH_COPY:
-        return "copy (搬运)"
+        return "copy"
     elif sim >= TH_COVER:
-        return "cover (翻唱)"
+        return "cover"
     else:
-        return "unrelated (不相关)"
+        return "unrelated"
 
 
 def main():
