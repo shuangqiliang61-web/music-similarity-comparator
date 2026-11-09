@@ -56,7 +56,7 @@ def plot_bars(labels, vals, out_path):
     plt.axhline(TH_COVER, color="#dd9944", ls="--", lw=1)
     plt.text(len(vals) - 0.5, TH_COPY + 0.02, "copy >= 0.85",
              color="#cc4444", fontsize=9, ha="right")
-    plt.text(len(vals) - 0.5, TH_COVER + 0.02, "cover >= 0.55",
+    plt.text(len(vals) - 0.5, TH_COVER + 0.02, f"cover >= {TH_COVER:.2f}",
              color="#dd9944", fontsize=9, ha="right")
     plt.ylim(-1.1, 1.1)
     plt.ylabel("Cosine similarity")
