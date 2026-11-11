@@ -17,6 +17,12 @@
 
 - Only 100 labelled pairs from a single source; accuracy varies 0.52-0.88 across 20 different train/test splits (mean ~0.67).
 - Cover detection is the weakest class (see README / 评测报告.md).
+- Later experiments (v4-v6: rhythm/CENS features, two-stage hierarchical cascade,
+  harmonic-separated CQT chroma and discrete pitch-class matching) produced
+  directionally positive but **statistically non-significant** gains on 100 pairs
+  (paired t p=0.356, Wilcoxon p=0.160). This model is intentionally kept as the
+  simple v3 baseline rather than swapped for a more complex, unverified one.
+  See `hierarchical_report.json` and 评测报告.md §11.
 - Not suitable for production copyright decisions.
 
 ## Privacy

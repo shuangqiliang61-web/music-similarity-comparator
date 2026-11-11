@@ -3,4 +3,5 @@ librosa
 matplotlib
 soundfile
 scikit-learn
+scipy
 joblib

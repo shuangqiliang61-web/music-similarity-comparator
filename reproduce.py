@@ -27,6 +27,7 @@ QUICK = [
     ("v4 冗余诊断", ["diagnose_v4.py"]),
     ("v5 新特征嵌套评估", ["optimize_v5.py"]),
     ("可解释规则族嵌套评估", ["optimize_rules.py"]),
+    ("分层结构 + v6 特征嵌套评估", ["optimize_hierarchical.py"]),
     ("越折错误分析", ["error_analysis.py"]),
     ("训练并导出最终模型", ["train_model.py"]),
 ]
@@ -38,6 +39,7 @@ FULL = [
     ("音频质量诊断", ["diagnose_audio_quality.py"]),
     ("v4 旋律特征重算", ["evaluate_v4.py"]),
     ("v5 CENS/节奏特征重算", ["evaluate_v5.py"]),
+    ("v6 HPCP/离散音级特征重算", ["evaluate_v6.py"]),
 ]
 
 

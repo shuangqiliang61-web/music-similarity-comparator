@@ -1,0 +1,7 @@
+﻿structure,held_out_accuracy,held_out_macro_f1,cover_recall
+flat3,0.72,0.7085,0.5
+flat3_balanced,0.6,0.5956,0.375
+flat3_ovr,0.64,0.6055,0.25
+hier2,0.6,0.5956,0.375
+hier2_balanced,0.68,0.6589,0.375
+hier2_tuned,0.6,0.5956,0.375

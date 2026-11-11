@@ -1,0 +1,543 @@
+{
+  "n_pairs": 100,
+  "protocol": "Nested 20-split evaluation: inside each split, feature set and classifier structure are chosen by 5-fold CV on the 75% training portion only; the 25% test portion is scored once. Identical splits to optimize_v5.py for comparability.",
+  "motivation": "cover sits between copy and unrelated; a flat 3-class model must learn two boundaries from only 33 cover pairs. A two-stage binary cascade learns one boundary per stage.",
+  "feature_sets": {
+    "base3": [
+      "landmark",
+      "sim_timbre",
+      "sim_melody"
+    ],
+    "base3+rhythm2": [
+      "landmark",
+      "sim_timbre",
+      "sim_melody",
+      "rhythm_acf_sim",
+      "tempo_ratio"
+    ],
+    "base3+shift2": [
+      "landmark",
+      "sim_timbre",
+      "sim_melody",
+      "shift_is_zero",
+      "shift_gap"
+    ],
+    "base3+independent4": [
+      "landmark",
+      "sim_timbre",
+      "sim_melody",
+      "rhythm_acf_sim",
+      "tempo_ratio",
+      "shift_is_zero",
+      "shift_gap"
+    ],
+    "all": [
+      "landmark",
+      "sim_timbre",
+      "sim_melody",
+      "sim_cens",
+      "cens_gap",
+      "sim_rhythm",
+      "tempo_ratio",
+      "rhythm_acf_sim",
+      "shift_is_zero",
+      "shift_gap"
+    ],
+    "base3+v6indep": [
+      "landmark",
+      "sim_timbre",
+      "sim_melody",
+      "hpcp_flat",
+      "pitch_match",
+      "pitch_shift_zero"
+    ],
+    "all+v6indep": [
+      "landmark",
+      "sim_timbre",
+      "sim_melody",
+      "sim_cens",
+      "cens_gap",
+      "sim_rhythm",
+      "tempo_ratio",
+      "rhythm_acf_sim",
+      "shift_is_zero",
+      "shift_gap",
+      "hpcp_flat",
+      "pitch_match",
+      "pitch_shift_zero"
+    ],
+    "all+v6": [
+      "landmark",
+      "sim_timbre",
+      "sim_melody",
+      "sim_cens",
+      "cens_gap",
+      "sim_rhythm",
+      "tempo_ratio",
+      "rhythm_acf_sim",
+      "shift_is_zero",
+      "shift_gap",
+      "hpcp_sim",
+      "hpcp_gap",
+      "hpcp_flat",
+      "hpcp_shift_zero",
+      "pitch_match",
+      "pitch_shift_zero"
+    ]
+  },
+  "correlation_with_v3": {
+    "cens_gap": {
+      "landmark": 0.772,
+      "sim_timbre": 0.599,
+      "sim_melody": 0.541
+    },
+    "hpcp_flat": {
+      "landmark": 0.506,
+      "sim_timbre": 0.218,
+      "sim_melody": 0.479
+    },
+    "hpcp_gap": {
+      "landmark": 0.785,
+      "sim_timbre": 0.605,
+      "sim_melody": 0.566
+    },
+    "hpcp_shift_zero": {
+      "landmark": 0.677,
+      "sim_timbre": 0.448,
+      "sim_melody": 0.556
+    },
+    "hpcp_sim": {
+      "landmark": 0.627,
+      "sim_timbre": 0.442,
+      "sim_melody": 0.909
+    },
+    "pitch_match": {
+      "landmark": 0.745,
+      "sim_timbre": 0.59,
+      "sim_melody": 0.658
+    },
+    "pitch_shift_zero": {
+      "landmark": 0.64,
+      "sim_timbre": 0.421,
+      "sim_melody": 0.536
+    },
+    "rhythm_acf_sim": {
+      "landmark": 0.626,
+      "sim_timbre": 0.443,
+      "sim_melody": 0.54
+    },
+    "shift_gap": {
+      "landmark": 0.821,
+      "sim_timbre": 0.592,
+      "sim_melody": 0.648
+    },
+    "shift_is_zero": {
+      "landmark": 0.623,
+      "sim_timbre": 0.285,
+      "sim_melody": 0.478
+    },
+    "sim_cens": {
+      "landmark": 0.618,
+      "sim_timbre": 0.457,
+      "sim_melody": 0.868
+    },
+    "sim_rhythm": {
+      "landmark": 0.644,
+      "sim_timbre": 0.461,
+      "sim_melody": 0.595
+    },
+    "tempo_ratio": {
+      "landmark": 0.407,
+      "sim_timbre": 0.38,
+      "sim_melody": 0.293
+    }
+  },
+  "fixed_holdout_structures": [
+    {
+      "structure": "flat3",
+      "held_out_accuracy": 0.72,
+      "held_out_macro_f1": 0.7085,
+      "cover_recall": 0.5,
+      "confusion": [
+        [
+          8,
+          1,
+          0
+        ],
+        [
+          2,
+          4,
+          2
+        ],
+        [
+          0,
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "structure": "flat3_balanced",
+      "held_out_accuracy": 0.6,
+      "held_out_macro_f1": 0.5956,
+      "cover_recall": 0.375,
+      "confusion": [
+        [
+          6,
+          3,
+          0
+        ],
+        [
+          2,
+          3,
+          3
+        ],
+        [
+          0,
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "structure": "flat3_ovr",
+      "held_out_accuracy": 0.64,
+      "held_out_macro_f1": 0.6055,
+      "cover_recall": 0.25,
+      "confusion": [
+        [
+          8,
+          1,
+          0
+        ],
+        [
+          2,
+          2,
+          4
+        ],
+        [
+          0,
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "structure": "hier2",
+      "held_out_accuracy": 0.6,
+      "held_out_macro_f1": 0.5956,
+      "cover_recall": 0.375,
+      "confusion": [
+        [
+          6,
+          3,
+          0
+        ],
+        [
+          2,
+          3,
+          3
+        ],
+        [
+          0,
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "structure": "hier2_balanced",
+      "held_out_accuracy": 0.68,
+      "held_out_macro_f1": 0.6589,
+      "cover_recall": 0.375,
+      "confusion": [
+        [
+          8,
+          1,
+          0
+        ],
+        [
+          2,
+          3,
+          3
+        ],
+        [
+          0,
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "structure": "hier2_tuned",
+      "held_out_accuracy": 0.6,
+      "held_out_macro_f1": 0.5956,
+      "cover_recall": 0.375,
+      "confusion": [
+        [
+          6,
+          3,
+          0
+        ],
+        [
+          2,
+          3,
+          3
+        ],
+        [
+          0,
+          2,
+          6
+        ]
+      ]
+    }
+  ],
+  "nested": {
+    "G0_baseline": {
+      "tag": "G0 v3基线(仅扁平)",
+      "allowed_feature_sets": [
+        "base3"
+      ],
+      "allowed_structures": [
+        "flat3"
+      ],
+      "scores_20_splits": [
+        0.64,
+        0.72,
+        0.68,
+        0.64,
+        0.72,
+        0.6,
+        0.64,
+        0.6,
+        0.76,
+        0.68,
+        0.76,
+        0.64,
+        0.6,
+        0.6,
+        0.76,
+        0.68,
+        0.72,
+        0.88,
+        0.6,
+        0.52
+      ],
+      "mean_accuracy": 0.672,
+      "std_accuracy": 0.0796,
+      "min": 0.52,
+      "max": 0.88,
+      "mean_cover_recall": 0.3688,
+      "mean_inner_cv_f1": 0.6162,
+      "selected_combinations": {
+        "base3|flat3": 20
+      }
+    },
+    "G1_structure_only": {
+      "tag": "G1 仅换结构",
+      "allowed_feature_sets": [
+        "base3"
+      ],
+      "allowed_structures": [
+        "flat3",
+        "flat3_balanced",
+        "flat3_ovr",
+        "hier2",
+        "hier2_balanced",
+        "hier2_tuned"
+      ],
+      "scores_20_splits": [
+        0.64,
+        0.72,
+        0.68,
+        0.68,
+        0.72,
+        0.6,
+        0.72,
+        0.6,
+        0.72,
+        0.64,
+        0.76,
+        0.64,
+        0.56,
+        0.64,
+        0.72,
+        0.64,
+        0.72,
+        0.8,
+        0.6,
+        0.56
+      ],
+      "mean_accuracy": 0.668,
+      "std_accuracy": 0.0646,
+      "min": 0.56,
+      "max": 0.8,
+      "mean_cover_recall": 0.3875,
+      "mean_inner_cv_f1": 0.6123,
+      "selected_combinations": {
+        "base3|hier2": 10,
+        "base3|flat3": 3,
+        "base3|hier2_balanced": 3,
+        "base3|hier2_tuned": 4
+      }
+    },
+    "G2_all_old_features": {
+      "tag": "G2 结构+旧特征",
+      "allowed_feature_sets": [
+        "base3",
+        "base3+rhythm2",
+        "base3+shift2",
+        "base3+independent4",
+        "all"
+      ],
+      "allowed_structures": [
+        "flat3",
+        "flat3_balanced",
+        "flat3_ovr",
+        "hier2",
+        "hier2_balanced",
+        "hier2_tuned"
+      ],
+      "scores_20_splits": [
+        0.72,
+        0.72,
+        0.72,
+        0.68,
+        0.72,
+        0.64,
+        0.68,
+        0.76,
+        0.76,
+        0.64,
+        0.6,
+        0.68,
+        0.56,
+        0.64,
+        0.72,
+        0.6,
+        0.72,
+        0.72,
+        0.8,
+        0.64
+      ],
+      "mean_accuracy": 0.686,
+      "std_accuracy": 0.0597,
+      "min": 0.56,
+      "max": 0.8,
+      "mean_cover_recall": 0.45,
+      "mean_inner_cv_f1": 0.6312,
+      "selected_combinations": {
+        "all|hier2_tuned": 2,
+        "all|flat3_ovr": 1,
+        "base3+independent4|flat3_balanced": 1,
+        "base3+rhythm2|hier2": 2,
+        "all|flat3": 6,
+        "all|hier2_balanced": 1,
+        "all|hier2": 3,
+        "base3+independent4|hier2_tuned": 1,
+        "all|flat3_balanced": 1,
+        "base3+rhythm2|hier2_balanced": 1,
+        "base3+independent4|flat3": 1
+      }
+    },
+    "G3_with_v6": {
+      "tag": "G3 结构+全部(含v6)",
+      "allowed_feature_sets": [
+        "base3",
+        "base3+rhythm2",
+        "base3+shift2",
+        "base3+independent4",
+        "all",
+        "base3+v6indep",
+        "all+v6indep",
+        "all+v6"
+      ],
+      "allowed_structures": [
+        "flat3",
+        "flat3_balanced",
+        "flat3_ovr",
+        "hier2",
+        "hier2_balanced",
+        "hier2_tuned"
+      ],
+      "scores_20_splits": [
+        0.72,
+        0.72,
+        0.76,
+        0.68,
+        0.84,
+        0.68,
+        0.64,
+        0.76,
+        0.76,
+        0.64,
+        0.6,
+        0.68,
+        0.6,
+        0.6,
+        0.68,
+        0.68,
+        0.76,
+        0.6,
+        0.8,
+        0.72
+      ],
+      "mean_accuracy": 0.696,
+      "std_accuracy": 0.0686,
+      "min": 0.6,
+      "max": 0.84,
+      "mean_cover_recall": 0.4938,
+      "mean_inner_cv_f1": 0.6464,
+      "selected_combinations": {
+        "all|hier2_tuned": 1,
+        "all|flat3_ovr": 1,
+        "base3+v6indep|hier2": 3,
+        "all+v6|hier2": 1,
+        "base3+v6indep|flat3": 1,
+        "all+v6indep|flat3_ovr": 2,
+        "all+v6indep|hier2": 1,
+        "all|hier2": 2,
+        "base3+independent4|hier2_tuned": 1,
+        "all+v6|hier2_tuned": 1,
+        "base3+v6indep|hier2_tuned": 1,
+        "all+v6indep|flat3_balanced": 1,
+        "all+v6indep|hier2_balanced": 1,
+        "all+v6indep|flat3": 2,
+        "all+v6|flat3_ovr": 1
+      }
+    }
+  },
+  "delta_structure_only": -0.004,
+  "delta_all_old": 0.014,
+  "delta_with_v6": 0.024,
+  "paired_significance": {
+    "G2_vs_G0": {
+      "mean_delta": 0.014,
+      "wins": 10,
+      "ties": 4,
+      "losses": 6,
+      "paired_t_p": 0.4959,
+      "wilcoxon_p": 0.3773,
+      "significant_at_0.05": false
+    },
+    "G3_vs_G0": {
+      "mean_delta": 0.024,
+      "wins": 10,
+      "ties": 6,
+      "losses": 4,
+      "paired_t_p": 0.3559,
+      "wilcoxon_p": 0.1597,
+      "significant_at_0.05": false
+    },
+    "G3_vs_G2": {
+      "mean_delta": 0.01,
+      "wins": 7,
+      "ties": 9,
+      "losses": 4,
+      "paired_t_p": 0.3979,
+      "wilcoxon_p": 0.3544,
+      "significant_at_0.05": false
+    }
+  },
+  "verdict": "Directionally positive but NOT statistically significant on 100 pairs. v6 independent features improve cover recall and narrow the spread, but with 20 paired splits neither test reaches p<0.05. The production model is intentionally kept at the v3 baseline; v6 is retained as a documented, reproducible experiment."
+}
