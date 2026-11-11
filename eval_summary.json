@@ -1,0 +1,107 @@
+{
+  "dataset": "labeled qry/ref audio pairs (3 classes, balanced)",
+  "n_pairs": 100,
+  "n_valid": 100,
+  "n_failed": 0,
+  "clip_seconds_per_track": 60,
+  "thresholds_used": {
+    "copy": 0.85,
+    "cover": 0.55
+  },
+  "accuracy": 0.35,
+  "macro_f1": 0.1728,
+  "per_class": {
+    "copy": {
+      "precision": 0.35,
+      "recall": 1.0,
+      "f1": 0.5185,
+      "support": 35
+    },
+    "cover": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 33
+    },
+    "unrelated": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 32
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "copy",
+      "cover",
+      "unrelated"
+    ],
+    "matrix": [
+      [
+        35,
+        0,
+        0
+      ],
+      [
+        33,
+        0,
+        0
+      ],
+      [
+        32,
+        0,
+        0
+      ]
+    ]
+  },
+  "similarity_stats": {
+    "copy": {
+      "n": 35,
+      "mean": 0.9928,
+      "median": 0.9965,
+      "min": 0.9539,
+      "max": 1.0
+    },
+    "cover": {
+      "n": 33,
+      "mean": 0.9727,
+      "median": 0.9738,
+      "min": 0.9327,
+      "max": 0.9982
+    },
+    "unrelated": {
+      "n": 32,
+      "mean": 0.948,
+      "median": 0.9556,
+      "min": 0.8552,
+      "max": 0.9831
+    }
+  },
+  "top_threshold_candidates": [
+    {
+      "accuracy": 0.65,
+      "th_copy": 0.98,
+      "th_cover": 0.97
+    },
+    {
+      "accuracy": 0.65,
+      "th_copy": 0.98,
+      "th_cover": 0.96
+    },
+    {
+      "accuracy": 0.64,
+      "th_copy": 0.99,
+      "th_cover": 0.97
+    },
+    {
+      "accuracy": 0.64,
+      "th_copy": 0.99,
+      "th_cover": 0.96
+    },
+    {
+      "accuracy": 0.64,
+      "th_copy": 0.98,
+      "th_cover": 0.98
+    }
+  ]
+}

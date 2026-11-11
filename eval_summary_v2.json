@@ -1,0 +1,116 @@
+{
+  "method": "v2: per-bin sequences + subsequence DTW (key-invariant chroma)",
+  "n_pairs": 100,
+  "n_valid": 100,
+  "n_failed": 0,
+  "clip_seconds_per_track": 60,
+  "default_thresholds": {
+    "th_timbre": 0.9,
+    "th_melody": 0.8
+  },
+  "accuracy_default_thresholds": 0.35,
+  "tuned_thresholds": {
+    "th_timbre": 0.97,
+    "th_melody": 0.95
+  },
+  "accuracy_tuned_in_sample": 0.6,
+  "accuracy_5fold_cv": 0.52,
+  "cv_fold_scores": [
+    0.55,
+    0.4,
+    0.5,
+    0.7,
+    0.45
+  ],
+  "macro_f1_tuned": 0.5865,
+  "per_class_tuned": {
+    "copy": {
+      "precision": 0.6389,
+      "recall": 0.6571,
+      "f1": 0.6479,
+      "support": 35
+    },
+    "cover": {
+      "precision": 0.44,
+      "recall": 0.3333,
+      "f1": 0.3793,
+      "support": 33
+    },
+    "unrelated": {
+      "precision": 0.6667,
+      "recall": 0.8125,
+      "f1": 0.7324,
+      "support": 32
+    }
+  },
+  "confusion_matrix_tuned": {
+    "labels": [
+      "copy",
+      "cover",
+      "unrelated"
+    ],
+    "matrix": [
+      [
+        23,
+        10,
+        2
+      ],
+      [
+        11,
+        11,
+        11
+      ],
+      [
+        2,
+        4,
+        26
+      ]
+    ]
+  },
+  "score_stats": {
+    "copy": {
+      "n": 35,
+      "sim_timbre_mean": 0.9756,
+      "sim_timbre_range": [
+        0.9202,
+        0.9999
+      ],
+      "sim_melody_mean": 0.9741,
+      "sim_melody_range": [
+        0.9345,
+        1.0
+      ]
+    },
+    "cover": {
+      "n": 33,
+      "sim_timbre_mean": 0.9563,
+      "sim_timbre_range": [
+        0.9203,
+        0.9843
+      ],
+      "sim_melody_mean": 0.947,
+      "sim_melody_range": [
+        0.9076,
+        0.9863
+      ]
+    },
+    "unrelated": {
+      "n": 32,
+      "sim_timbre_mean": 0.9442,
+      "sim_timbre_range": [
+        0.8751,
+        0.9726
+      ],
+      "sim_melody_mean": 0.9254,
+      "sim_melody_range": [
+        0.8954,
+        0.9835
+      ]
+    }
+  },
+  "comparison": {
+    "v1_accuracy": 0.35,
+    "v2_accuracy_default": 0.35,
+    "v2_accuracy_5fold_cv": 0.52
+  }
+}

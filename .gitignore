@@ -6,6 +6,16 @@ __pycache__/
 .workbuddy/
 demo_*.wav
 
+# 音频样本：可能有版权，绝不上传到公开 GitHub 仓库
+samples/
+*.mp3
+*.wav
+*.m4a
+*.flac
+*.ogg
+*.aac
+*.wma
+
 # 操作系统
 Thumbs.db
 .DS_Store
