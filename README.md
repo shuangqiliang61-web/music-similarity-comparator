@@ -18,8 +18,10 @@
 | 0.55 ~ 0.85 | 翻唱 (cover) | 同一首歌的不同演绎 |
 | < 0.55 | 不相关 (unrelated) | 完全不同的歌 |
 
-> 注：以上是 **v1 基线**（全曲平均指纹）的判定规则。v1 在真实标注数据上表现不佳，
-> 后续改进版 v2 / v3 及实测对比见「六、真实数据集评测」，实际使用请以 v3 为准。
+> 注：以上是 **v1 基线**（全曲平均指纹）的判定规则，仅用于教学演示。
+> v1 在 100 对真实标注数据上只有 35% 准确率，已被证伪。
+> **实际比对请用 `python predict.py song1 song2`**（v3 特征 + 训练好的分类器），
+> 版本演进与实测对比见「六、真实数据集评测」和 `model_card.md`。
 
 ---
 
@@ -38,8 +40,8 @@
 ```bash
 conda create -n music python=3.11 -y
 conda activate music
-conda install -c conda-forge --override-channels librosa matplotlib -y
-pip install soundfile
+conda install -c conda-forge --override-channels librosa matplotlib scikit-learn -y
+pip install soundfile joblib
 ```
 
 （Windows 若提示缺少 `soundfile`，用 `pip install soundfile` 即可；其余库用 conda 装更稳定。）
@@ -48,18 +50,38 @@ pip install soundfile
 
 ## 三、使用方法
 
-**比较两首歌：**
+**① 比对两首歌（推荐，用的是改进版模型）：**
 
 ```bash
-python main.py song1.mp3 song2.mp3
+python predict.py song1.mp3 song2.mp3
+python predict.py song1.mp3 song2.mp3 --json     # 机器可读输出
 ```
 
-命令行会打印相似度分数与分类结果，并保存一张结果图 `result.png`。
-
-**演示模式（无需歌曲，自动生成样本验证三类分类）：**
+输出三分类结果、置信度、三路中间分数。首次使用需先训练模型：
 
 ```bash
-python main.py
+python train_model.py        # 用 100 对标注数据训练，导出 model_bundle.joblib + model_card.md
+```
+
+模型只含系数与标准化统计量，不含任何音频或文件名，已随仓库提供。
+
+**② 教学演示（v1 原始算法，仅用于讲解）：**
+
+```bash
+python main.py               # 合成正弦波 vs 白噪声，生成 result.png
+python main.py a.mp3 b.mp3   # 也会自动转发到 predict.py 的改进版推理
+```
+
+> `main.py` 保留的是最初版本，用来演示「波形 → 24 维指纹 → 余弦相似度」的基础链路；
+> 它**不代表当前算法性能**。真实比对一律用 `predict.py`。
+
+**③ 复现实验与自检：**
+
+```bash
+python -m unittest discover -s tests -v    # 14 个核心算法测试
+python reproduce.py --list                 # 查看全部复现步骤
+python reproduce.py --run                  # 快速组（约 5 分钟）
+python reproduce.py --run --full           # 连音频重算一起跑（约 10 分钟）
 ```
 
 ---
@@ -81,8 +103,18 @@ python main.py
 | `optimize_model.py` | 独立测试集口径：25% 留出 + 9 个分类器规范对比 + 20 次划分稳定性 |
 | `core_v4.py` / `evaluate_v4.py` | v4：旋律级新特征（移位置信度 / 变速 / 分段一致性）及其评测 |
 | `optimize_v4.py` / `diagnose_v4.py` | 三组特征集严格对比、相关性与增量诊断（负结果记录） |
+| `core_v5.py` / `evaluate_v5.py` | v5：CENS 色度 + 节奏/起音（全新信息源）及其评测 |
+| `optimize_v5.py` / `optimize_rules.py` | 嵌套评估：新特征与极简可解释规则的严格验证 |
+| `diagnose_audio_quality.py` | 音频质量诊断（静音 / 时长 / 削波），排除输入层面的问题 |
+| `features_runtime.py` | **训练与推理共用的特征提取**，保证两侧分数不漂移 |
+| `train_model.py` | 训练并导出 `model_bundle.joblib` + `model_card.md` |
+| `predict.py` | **实际推理入口**：两首歌 → 三类判定 + 置信度 |
+| `tests/test_core.py` | 14 个核心算法不变量测试 |
+| `reproduce.py` | 一键复现全部实验 |
+| `error_analysis.py` | 越折预测错误分析 → `ERROR_ANALYSIS.md` |
 | `test_samples.py` | 小工具：把一个文件夹里的音频两两配对做快速比对 |
-| `评测报告.md` | 真实数据集评测、原因分析与 v1→v4 全部改进/负结果实验记录（论文素材） |
+| `评测报告.md` | 真实数据集评测、原因分析与 v1→v5 全部改进/负结果实验记录（论文素材） |
+| `ERROR_ANALYSIS.md` / `model_card.md` | 错误分布分析 / 模型卡（性能、局限、隐私） |
 | `开发笔记.md` | 中文开发笔记（英文论文的素材库） |
 | `音乐歌曲比对项目-学习路线图.md` | 整体分阶段计划 |
 
@@ -172,6 +204,30 @@ copy 均值 +0.993、cover +0.973、unrelated +0.948，分布严重重叠。
 **所以优化到此为止是主动决定，不是没做完**：100 对样本上继续调参只会过拟合。
 对外统一口径为「约 67%（20 次划分均值）」，并注明波动区间。
 
+### 后续又试了三条正当路线（v5，仍未突破天花板）
+
+| 尝试 | 结果 |
+|---|---|
+| **音频质量诊断** | 195 个文件全部解码成功，平均静音 1%，无前导静音，11 条难例也无异常 → 输入没问题，排除这个变量 |
+| **CENS 色度 + 节奏/起音**（全新信息源） | 与旧特征相关性只有 0.41~0.87（v4 是 0.99），确有新信息；`rhythm_acf_sim` 三类均值 **0.894 / 0.723 / 0.432**。但嵌套 20 次划分 **delta = −0.008** |
+| **极简可解释规则**（只 2 个阈值） | 嵌套 delta **+0.044**（0.578→0.622），20 次里 13 次自动选中带节奏特征的规则；但仍低于逻辑回归 0.660 |
+
+节奏特征是真有用的，但 100 对样本撑不住更多维度带来的方差。
+**准确率天花板约 67~72%，由数据规模决定，不是代码能调出来的。**
+详见 `评测报告.md` 第 10 节与 `ERROR_ANALYSIS.md`。
+
+### 工程闭环：把「评测脚本」变成「可用工具」
+
+这一轮更重要的修复是：**此前 `main.py` 跑的仍是已被证伪的 v1**。
+也就是说项目里躺着改进算法，但用户真正执行时拿到的是 35% 准确率的结果。现在：
+
+- `features_runtime.py` 统一训练与推理的特征计算，实测三路分数与训练 CSV **完全一致**（0.7099 / 0.9851 / 0.9801），无分布漂移；
+- `train_model.py` 导出 `model_bundle.joblib` + `model_card.md`（性能、局限、隐私声明）；
+- `predict.py` 成为真正的推理入口，同歌自比 `landmark = 1.0`、正确判为搬运；
+- `tests/test_core.py` 14 个自动化测试，并顺手修掉 `classify()` 返回 `"copy (搬运)"` 与文档口径不一致的 bug；
+- `reproduce.py` 一键复现 7 个步骤（实测 313 秒全部通过）；
+- `ERROR_ANALYSIS.md` 用越折预测指出：翻唱 recall 0.424、难例准确率 54.6% vs 其他 74.2%。
+
 ---
 
 ## 七、已知局限与后续方向
@@ -180,21 +236,26 @@ copy 均值 +0.993、cover +0.973、unrelated +0.948，分布严重重叠。
   高逼真度翻唱易被当成搬运，变调 / 变速 / 纯伴奏又易被当成不相关。
   下一步可试 HPCP / CQT-Chroma + DTW、节拍无关的 n-gram 哈希，或显式建模音色差异。
 - **v1 全曲平均特征已被证伪**（100 对标注数据上仅 35%），保留在仓库中作为对照基线；
-  实际使用请用 v3（`core_v3.py` 的三路分数 + 逻辑回归）。
+  实际使用请用 `python predict.py song1 song2`（v3 三路分数 + 训练好的逻辑回归）。
+  越折预测下翻唱 recall 为 0.424，仍是最弱的一类。
 - **样本规模有限**：100 对且来自单一来源。独立测试集准确率 0.72，但换 20 种划分
   会在 0.52~0.88 之间波动（均值 0.672），说明这个数字本身置信区间很宽；
   难例（变速、纯伴奏、低音量翻唱）覆盖不足。
 - **调参口径**：只引用「重复分层 CV / 独立测试集 / 20 次划分均值」，
   不引用「同一批数据上调出来的最优值」。
-- **优化已到边界**：换模型与堆相关特征都无提升（第 6 节、报告第 9 节），
-  下一步需要的是更多标注数据或换模态（人声分离、CQT/HPCP、预训练音频嵌入），
-  而不是继续调参。
+- **优化已到边界**：换模型、堆相关特征、加全新节奏特征都未能突破
+  （第 6 节、报告第 9~10 节）。要真正提升准确率，只有三条路：
+  ① **扩充标注数据**，尤其多收集翻唱难例（当前 100 对、来源单一，这是最大瓶颈）；
+  ② **换模态**：人声/伴奏分离后再提旋律轮廓、HPCP/CQT-Chroma、预训练音频嵌入；
+  ③ **换任务定义**：把三分类拆成「同一录音检测」+「同一作品检测」两个二分类，
+  各自用更专门的模型。都不是继续调参能解决的。
 
 ---
 
 ## 八、环境说明
 
 - Python 3.11（conda 环境 `music`）
-- 依赖：numpy, librosa, matplotlib, soundfile, scikit-learn（v3 逻辑回归对照用）
+- 依赖：numpy, librosa, matplotlib, soundfile, scikit-learn, joblib
+  （见 `requirements.txt`；训练与推理共用 `features_runtime.py`）
 - 注意：本项目在 Python 3.14 的 pip 环境下，librosa 依赖的 numba 编译型 DLL
   会被部分系统的应用控制策略拦截，因此统一使用 conda 环境运行。

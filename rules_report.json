@@ -1,0 +1,294 @@
+{
+  "n_pairs": 100,
+  "seed_fixed_holdout": 42,
+  "rule_form": "landmark >= t1 -> copy; elif standardized song_score >= t2 -> cover; else unrelated",
+  "combos": {
+    "R1_melody_only_v3": [
+      "sim_melody"
+    ],
+    "R2_rhythm_acf": [
+      "rhythm_acf_sim"
+    ],
+    "R3_melody_plus_rhythm": [
+      "sim_melody",
+      "rhythm_acf_sim"
+    ],
+    "R4_three": [
+      "sim_melody",
+      "rhythm_acf_sim",
+      "tempo_ratio"
+    ],
+    "R5_four": [
+      "sim_melody",
+      "rhythm_acf_sim",
+      "tempo_ratio",
+      "sim_rhythm"
+    ],
+    "R6_cens_plus_rhythm": [
+      "sim_cens",
+      "rhythm_acf_sim",
+      "tempo_ratio"
+    ]
+  },
+  "fixed_holdout_comparison": [
+    {
+      "rule": "R1_melody_only_v3",
+      "song_score_features": [
+        "sim_melody"
+      ],
+      "train_cv_macro_f1": 0.6766,
+      "thresholds": {
+        "th_landmark": 0.5059,
+        "th_song": -0.1639
+      },
+      "held_out_accuracy": 0.52,
+      "held_out_macro_f1": 0.5186,
+      "confusion": [
+        [
+          4,
+          4,
+          1
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          0,
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "rule": "R2_rhythm_acf",
+      "song_score_features": [
+        "rhythm_acf_sim"
+      ],
+      "train_cv_macro_f1": 0.6983,
+      "thresholds": {
+        "th_landmark": 0.5059,
+        "th_song": 0.5413
+      },
+      "held_out_accuracy": 0.6,
+      "held_out_macro_f1": 0.5778,
+      "confusion": [
+        [
+          4,
+          4,
+          1
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          0,
+          0,
+          8
+        ]
+      ]
+    },
+    {
+      "rule": "R3_melody_plus_rhythm",
+      "song_score_features": [
+        "sim_melody",
+        "rhythm_acf_sim"
+      ],
+      "train_cv_macro_f1": 0.6735,
+      "thresholds": {
+        "th_landmark": 0.5059,
+        "th_song": 0.1079
+      },
+      "held_out_accuracy": 0.6,
+      "held_out_macro_f1": 0.5778,
+      "confusion": [
+        [
+          4,
+          4,
+          1
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          0,
+          0,
+          8
+        ]
+      ]
+    },
+    {
+      "rule": "R4_three",
+      "song_score_features": [
+        "sim_melody",
+        "rhythm_acf_sim",
+        "tempo_ratio"
+      ],
+      "train_cv_macro_f1": 0.7018,
+      "thresholds": {
+        "th_landmark": 0.5059,
+        "th_song": -0.1791
+      },
+      "held_out_accuracy": 0.52,
+      "held_out_macro_f1": 0.5155,
+      "confusion": [
+        [
+          4,
+          3,
+          2
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          0,
+          2,
+          6
+        ]
+      ]
+    },
+    {
+      "rule": "R5_four",
+      "song_score_features": [
+        "sim_melody",
+        "rhythm_acf_sim",
+        "tempo_ratio",
+        "sim_rhythm"
+      ],
+      "train_cv_macro_f1": 0.7063,
+      "thresholds": {
+        "th_landmark": 0.4453,
+        "th_song": -0.2412
+      },
+      "held_out_accuracy": 0.6,
+      "held_out_macro_f1": 0.5873,
+      "confusion": [
+        [
+          5,
+          3,
+          1
+        ],
+        [
+          2,
+          3,
+          3
+        ],
+        [
+          0,
+          1,
+          7
+        ]
+      ]
+    },
+    {
+      "rule": "R6_cens_plus_rhythm",
+      "song_score_features": [
+        "sim_cens",
+        "rhythm_acf_sim",
+        "tempo_ratio"
+      ],
+      "train_cv_macro_f1": 0.7012,
+      "thresholds": {
+        "th_landmark": 0.5059,
+        "th_song": -0.1568
+      },
+      "held_out_accuracy": 0.56,
+      "held_out_macro_f1": 0.5488,
+      "confusion": [
+        [
+          4,
+          4,
+          1
+        ],
+        [
+          1,
+          3,
+          4
+        ],
+        [
+          0,
+          1,
+          7
+        ]
+      ]
+    }
+  ],
+  "nested_baseline_v3_rule": {
+    "scores": [
+      0.56,
+      0.6,
+      0.6,
+      0.52,
+      0.64,
+      0.64,
+      0.52,
+      0.6,
+      0.64,
+      0.56,
+      0.52,
+      0.6,
+      0.52,
+      0.6,
+      0.68,
+      0.56,
+      0.6,
+      0.6,
+      0.52,
+      0.48
+    ],
+    "mean": 0.578,
+    "std": 0.0513,
+    "min": 0.48,
+    "max": 0.68,
+    "selected_rules": {
+      "R1_melody_only_v3": 20
+    }
+  },
+  "nested_all_rules": {
+    "scores": [
+      0.48,
+      0.64,
+      0.6,
+      0.64,
+      0.64,
+      0.64,
+      0.68,
+      0.68,
+      0.76,
+      0.52,
+      0.52,
+      0.64,
+      0.56,
+      0.64,
+      0.68,
+      0.68,
+      0.68,
+      0.56,
+      0.64,
+      0.56
+    ],
+    "mean": 0.622,
+    "std": 0.0675,
+    "min": 0.48,
+    "max": 0.76,
+    "selected_rules": {
+      "R5_four": 13,
+      "R4_three": 1,
+      "R6_cens_plus_rhythm": 1,
+      "R2_rhythm_acf": 5
+    }
+  },
+  "nested_delta": 0.044,
+  "reference": {
+    "v3_logreg_20split_mean": 0.672,
+    "nested_model_baseline": 0.66,
+    "nested_v5_features_delta": -0.008
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "n_pairs": 100,
+  "n_unique_files": 195,
+  "n_failed_decode": 0,
+  "failed_examples": [],
+  "clip_seconds": 60,
+  "thresholds": {
+    "silence_rel": 0.02,
+    "silence_abs": 0.0001
+  },
+  "overall": {
+    "n": 195,
+    "short_under_60s": 13,
+    "silence_over_10s": 1,
+    "silence_over_30s": 0,
+    "leading_silence_over_5s": 0,
+    "very_quiet": 1,
+    "mean_silence_ratio": 0.0108,
+    "mean_first_active_sec": 0.467,
+    "clipped_count": 44,
+    "label": "all"
+  },
+  "by_class": {
+    "copy": {
+      "n": 70,
+      "short_under_60s": 4,
+      "silence_over_10s": 0,
+      "silence_over_30s": 0,
+      "leading_silence_over_5s": 0,
+      "very_quiet": 0,
+      "mean_silence_ratio": 0.0062,
+      "mean_first_active_sec": 0.371,
+      "clipped_count": 22,
+      "label": "copy"
+    },
+    "cover": {
+      "n": 66,
+      "short_under_60s": 6,
+      "silence_over_10s": 0,
+      "silence_over_30s": 0,
+      "leading_silence_over_5s": 0,
+      "very_quiet": 0,
+      "mean_silence_ratio": 0.0096,
+      "mean_first_active_sec": 0.455,
+      "clipped_count": 10,
+      "label": "cover"
+    },
+    "unrelated": {
+      "n": 64,
+      "short_under_60s": 3,
+      "silence_over_10s": 1,
+      "silence_over_30s": 0,
+      "leading_silence_over_5s": 0,
+      "very_quiet": 1,
+      "mean_silence_ratio": 0.0162,
+      "mean_first_active_sec": 0.547,
+      "clipped_count": 13,
+      "label": "unrelated"
+    }
+  },
+  "note_comparison": {
+    "hard_cases_with_note": {
+      "n": 11,
+      "short_under_60s": 1,
+      "silence_over_10s": 0,
+      "silence_over_30s": 0,
+      "leading_silence_over_5s": 0,
+      "very_quiet": 0,
+      "mean_silence_ratio": 0.0242,
+      "mean_first_active_sec": 1.0,
+      "clipped_count": 3,
+      "label": "with note"
+    },
+    "others": {
+      "n": 89,
+      "short_under_60s": 12,
+      "silence_over_10s": 1,
+      "silence_over_30s": 0,
+      "leading_silence_over_5s": 0,
+      "very_quiet": 1,
+      "mean_silence_ratio": 0.017,
+      "mean_first_active_sec": 0.753,
+      "clipped_count": 36,
+      "label": "without note"
+    }
+  }
+}

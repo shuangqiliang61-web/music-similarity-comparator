@@ -1,0 +1,6 @@
+﻿feature_set,n_features,selected_model,cv_macro_f1,held_out_accuracy,held_out_macro_f1
+A_v3_baseline,3,SVC rbf balanced,0.6228,0.52,0.5161
+B_add_rhythm_acf,4,RandomForest,0.6736,0.64,0.6398
+C_add_two_independent,5,RandomForest,0.7085,0.64,0.6406
+D_rhythm_all,6,SVC rbf balanced,0.6766,0.6,0.5956
+E_all_8,8,RandomForest,0.7703,0.68,0.6825

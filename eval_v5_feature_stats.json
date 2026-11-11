@@ -1,0 +1,138 @@
+{
+  "n_pairs": 100,
+  "n_valid": 100,
+  "n_failed": 0,
+  "elapsed_seconds": 145.0,
+  "columns": [
+    "landmark",
+    "sim_timbre",
+    "sim_melody",
+    "sim_cens",
+    "cens_gap",
+    "sim_rhythm",
+    "tempo_ratio",
+    "rhythm_acf_sim"
+  ],
+  "new_features": [
+    "sim_cens",
+    "cens_gap",
+    "sim_rhythm",
+    "tempo_ratio",
+    "rhythm_acf_sim"
+  ],
+  "mean_by_class": {
+    "copy": {
+      "n": 35,
+      "sim_cens": 0.99073,
+      "cens_gap": 0.08811,
+      "sim_rhythm": 0.95958,
+      "tempo_ratio": 0.85669,
+      "rhythm_acf_sim": 0.89389
+    },
+    "cover": {
+      "n": 33,
+      "sim_cens": 0.96626,
+      "cens_gap": 0.04214,
+      "sim_rhythm": 0.94523,
+      "tempo_ratio": 0.8647,
+      "rhythm_acf_sim": 0.72289
+    },
+    "unrelated": {
+      "n": 32,
+      "sim_cens": 0.95122,
+      "cens_gap": 0.00974,
+      "sim_rhythm": 0.92637,
+      "tempo_ratio": 0.62273,
+      "rhythm_acf_sim": 0.43208
+    }
+  },
+  "correlation_matrix": [
+    [
+      1.0,
+      0.651,
+      0.719,
+      0.618,
+      0.772,
+      0.644,
+      0.407,
+      0.626
+    ],
+    [
+      0.651,
+      1.0,
+      0.592,
+      0.457,
+      0.599,
+      0.461,
+      0.38,
+      0.443
+    ],
+    [
+      0.719,
+      0.592,
+      1.0,
+      0.868,
+      0.541,
+      0.595,
+      0.293,
+      0.54
+    ],
+    [
+      0.618,
+      0.457,
+      0.868,
+      1.0,
+      0.452,
+      0.426,
+      0.265,
+      0.506
+    ],
+    [
+      0.772,
+      0.599,
+      0.541,
+      0.452,
+      1.0,
+      0.44,
+      0.308,
+      0.491
+    ],
+    [
+      0.644,
+      0.461,
+      0.595,
+      0.426,
+      0.44,
+      1.0,
+      0.467,
+      0.515
+    ],
+    [
+      0.407,
+      0.38,
+      0.293,
+      0.265,
+      0.308,
+      0.467,
+      1.0,
+      0.443
+    ],
+    [
+      0.626,
+      0.443,
+      0.54,
+      0.506,
+      0.491,
+      0.515,
+      0.443,
+      1.0
+    ]
+  ],
+  "max_abs_corr_with_old_features": {
+    "sim_cens": 0.8683,
+    "cens_gap": 0.7722,
+    "sim_rhythm": 0.6441,
+    "tempo_ratio": 0.4065,
+    "rhythm_acf_sim": 0.6258
+  }
+}

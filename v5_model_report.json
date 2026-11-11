@@ -1,0 +1,344 @@
+{
+  "n_pairs": 100,
+  "seed_fixed_holdout": 42,
+  "protocol": "Fixed 25% hold-out for display; nested 20-split evaluation where BOTH feature set and model are selected by inner 5-fold CV on the training portion only; test portion evaluated once.",
+  "feature_sets": {
+    "A_v3_baseline": [
+      "landmark",
+      "sim_timbre",
+      "sim_melody"
+    ],
+    "B_add_rhythm_acf": [
+      "landmark",
+      "sim_timbre",
+      "sim_melody",
+      "rhythm_acf_sim"
+    ],
+    "C_add_two_independent": [
+      "landmark",
+      "sim_timbre",
+      "sim_melody",
+      "rhythm_acf_sim",
+      "tempo_ratio"
+    ],
+    "D_rhythm_all": [
+      "landmark",
+      "sim_timbre",
+      "sim_melody",
+      "rhythm_acf_sim",
+      "tempo_ratio",
+      "sim_rhythm"
+    ],
+    "E_all_8": [
+      "landmark",
+      "sim_timbre",
+      "sim_melody",
+      "sim_cens",
+      "cens_gap",
+      "sim_rhythm",
+      "tempo_ratio",
+      "rhythm_acf_sim"
+    ]
+  },
+  "fixed_holdout_comparison": [
+    {
+      "features": "A_v3_baseline",
+      "n_features": 3,
+      "selected_model": "SVC rbf balanced",
+      "cv_macro_f1": 0.6228,
+      "held_out_accuracy": 0.52,
+      "held_out_macro_f1": 0.5161,
+      "confusion": [
+        [
+          5,
+          4,
+          0
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          0,
+          2,
+          6
+        ]
+      ],
+      "per_class": {
+        "copy": {
+          "precision": 0.8333,
+          "recall": 0.5556,
+          "f1-score": 0.6667,
+          "support": 9.0
+        },
+        "cover": {
+          "precision": 0.25,
+          "recall": 0.25,
+          "f1-score": 0.25,
+          "support": 8.0
+        },
+        "unrelated": {
+          "precision": 0.5455,
+          "recall": 0.75,
+          "f1-score": 0.6316,
+          "support": 8.0
+        }
+      }
+    },
+    {
+      "features": "B_add_rhythm_acf",
+      "n_features": 4,
+      "selected_model": "RandomForest",
+      "cv_macro_f1": 0.6736,
+      "held_out_accuracy": 0.64,
+      "held_out_macro_f1": 0.6398,
+      "confusion": [
+        [
+          4,
+          5,
+          0
+        ],
+        [
+          0,
+          5,
+          3
+        ],
+        [
+          0,
+          1,
+          7
+        ]
+      ],
+      "per_class": {
+        "copy": {
+          "precision": 1.0,
+          "recall": 0.4444,
+          "f1-score": 0.6154,
+          "support": 9.0
+        },
+        "cover": {
+          "precision": 0.4545,
+          "recall": 0.625,
+          "f1-score": 0.5263,
+          "support": 8.0
+        },
+        "unrelated": {
+          "precision": 0.7,
+          "recall": 0.875,
+          "f1-score": 0.7778,
+          "support": 8.0
+        }
+      }
+    },
+    {
+      "features": "C_add_two_independent",
+      "n_features": 5,
+      "selected_model": "RandomForest",
+      "cv_macro_f1": 0.7085,
+      "held_out_accuracy": 0.64,
+      "held_out_macro_f1": 0.6406,
+      "confusion": [
+        [
+          5,
+          4,
+          0
+        ],
+        [
+          0,
+          4,
+          4
+        ],
+        [
+          0,
+          1,
+          7
+        ]
+      ],
+      "per_class": {
+        "copy": {
+          "precision": 1.0,
+          "recall": 0.5556,
+          "f1-score": 0.7143,
+          "support": 9.0
+        },
+        "cover": {
+          "precision": 0.4444,
+          "recall": 0.5,
+          "f1-score": 0.4706,
+          "support": 8.0
+        },
+        "unrelated": {
+          "precision": 0.6364,
+          "recall": 0.875,
+          "f1-score": 0.7368,
+          "support": 8.0
+        }
+      }
+    },
+    {
+      "features": "D_rhythm_all",
+      "n_features": 6,
+      "selected_model": "SVC rbf balanced",
+      "cv_macro_f1": 0.6766,
+      "held_out_accuracy": 0.6,
+      "held_out_macro_f1": 0.5956,
+      "confusion": [
+        [
+          6,
+          3,
+          0
+        ],
+        [
+          2,
+          3,
+          3
+        ],
+        [
+          0,
+          2,
+          6
+        ]
+      ],
+      "per_class": {
+        "copy": {
+          "precision": 0.75,
+          "recall": 0.6667,
+          "f1-score": 0.7059,
+          "support": 9.0
+        },
+        "cover": {
+          "precision": 0.375,
+          "recall": 0.375,
+          "f1-score": 0.375,
+          "support": 8.0
+        },
+        "unrelated": {
+          "precision": 0.6667,
+          "recall": 0.75,
+          "f1-score": 0.7059,
+          "support": 8.0
+        }
+      }
+    },
+    {
+      "features": "E_all_8",
+      "n_features": 8,
+      "selected_model": "RandomForest",
+      "cv_macro_f1": 0.7703,
+      "held_out_accuracy": 0.68,
+      "held_out_macro_f1": 0.6825,
+      "confusion": [
+        [
+          5,
+          4,
+          0
+        ],
+        [
+          0,
+          5,
+          3
+        ],
+        [
+          0,
+          1,
+          7
+        ]
+      ],
+      "per_class": {
+        "copy": {
+          "precision": 1.0,
+          "recall": 0.5556,
+          "f1-score": 0.7143,
+          "support": 9.0
+        },
+        "cover": {
+          "precision": 0.5,
+          "recall": 0.625,
+          "f1-score": 0.5556,
+          "support": 8.0
+        },
+        "unrelated": {
+          "precision": 0.7,
+          "recall": 0.875,
+          "f1-score": 0.7778,
+          "support": 8.0
+        }
+      }
+    }
+  ],
+  "nested_baseline_v3": {
+    "scores": [
+      0.64,
+      0.72,
+      0.68,
+      0.52,
+      0.72,
+      0.6,
+      0.64,
+      0.6,
+      0.68,
+      0.68,
+      0.76,
+      0.64,
+      0.6,
+      0.6,
+      0.72,
+      0.68,
+      0.72,
+      0.88,
+      0.6,
+      0.52
+    ],
+    "mean": 0.66,
+    "std": 0.0815,
+    "min": 0.52,
+    "max": 0.88,
+    "selected_combinations": {
+      "A_v3_baseline|LogReg": 16,
+      "A_v3_baseline|SVC rbf": 2,
+      "A_v3_baseline|LogReg balanced": 2
+    }
+  },
+  "nested_v5": {
+    "scores": [
+      0.68,
+      0.6,
+      0.6,
+      0.6,
+      0.64,
+      0.64,
+      0.64,
+      0.6,
+      0.8,
+      0.64,
+      0.6,
+      0.6,
+      0.68,
+      0.72,
+      0.72,
+      0.6,
+      0.72,
+      0.72,
+      0.6,
+      0.64
+    ],
+    "mean": 0.652,
+    "std": 0.0567,
+    "min": 0.6,
+    "max": 0.8,
+    "selected_combinations": {
+      "B_add_rhythm_acf|SVC rbf": 1,
+      "E_all_8|SVC rbf": 2,
+      "C_add_two_independent|SVC rbf": 1,
+      "C_add_two_independent|LogReg": 1,
+      "E_all_8|LogReg balanced": 3,
+      "E_all_8|LogReg": 8,
+      "B_add_rhythm_acf|LogReg": 1,
+      "A_v3_baseline|LogReg": 2,
+      "D_rhythm_all|SVC rbf": 1
+    }
+  },
+  "nested_delta": -0.008,
+  "interpretation": "Only the nested delta can be cited as evidence that the new features help; single-split numbers are unstable."
+}

@@ -1,0 +1,109 @@
+{
+  "n_pairs": 100,
+  "method": "StratifiedKFold(5, seed=0) cross_val_predict; every prediction comes from a model that did not train on that pair",
+  "out_of_fold_accuracy": 0.72,
+  "confusion": {
+    "labels": [
+      "copy",
+      "cover",
+      "unrelated"
+    ],
+    "matrix": [
+      [
+        29,
+        5,
+        1
+      ],
+      [
+        8,
+        14,
+        11
+      ],
+      [
+        0,
+        3,
+        29
+      ]
+    ]
+  },
+  "per_class": {
+    "copy": {
+      "support": 35,
+      "recall": 0.8286,
+      "mistaken_as": {
+        "cover": 5,
+        "unrelated": 1
+      },
+      "most_common_mistake": "cover"
+    },
+    "cover": {
+      "support": 33,
+      "recall": 0.4242,
+      "mistaken_as": {
+        "copy": 8,
+        "unrelated": 11
+      },
+      "most_common_mistake": "unrelated"
+    },
+    "unrelated": {
+      "support": 32,
+      "recall": 0.9062,
+      "mistaken_as": {
+        "cover": 3
+      },
+      "most_common_mistake": "cover"
+    }
+  },
+  "by_hard_case_note": {
+    "with_note": {
+      "n": 11,
+      "accuracy": 0.5455
+    },
+    "without_note": {
+      "n": 89,
+      "accuracy": 0.7416
+    }
+  },
+  "by_landmark_bin": [
+    {
+      "range": "[-1.00, 0.10)",
+      "n": 36,
+      "accuracy": 0.7222,
+      "class_mix": {
+        "copy": 2,
+        "cover": 9,
+        "unrelated": 25
+      }
+    },
+    {
+      "range": "[0.10, 0.20)",
+      "n": 22,
+      "accuracy": 0.6364,
+      "class_mix": {
+        "copy": 3,
+        "cover": 12,
+        "unrelated": 7
+      }
+    },
+    {
+      "range": "[0.20, 0.40)",
+      "n": 13,
+      "accuracy": 0.6923,
+      "class_mix": {
+        "copy": 8,
+        "cover": 5,
+        "unrelated": 0
+      }
+    },
+    {
+      "range": "[0.40, 2.00)",
+      "n": 29,
+      "accuracy": 0.7931,
+      "class_mix": {
+        "copy": 22,
+        "cover": 7,
+        "unrelated": 0
+      }
+    }
+  ]
+}

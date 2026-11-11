@@ -4,7 +4,7 @@ core.py — 音乐相似度比对的核心算法（模块化沉淀版）
 包含：
   - fingerprint(): 把一段音频变成固定长度"指纹向量"
   - cosine_sim():  计算两个指纹的余弦相似度
-  - classify():    按阈值把相似度判成 搬运 / 翻唱 / 不相关
+  - classify():    按阈值把相似度判成 copy / cover / unrelated（纯英文标签）
 
 设计要点（详见开发笔记 / 论文 Limitations）：
   朴素特征会把 MFCC 第 0 维(log-energy, 响度)算进去，
@@ -41,10 +41,14 @@ def cosine_sim(a, b):
 
 
 def classify(sim):
-    """把相似度分数映射成类别标签（英文，论文可用）。"""
+    """把相似度分数映射成纯英文类别标签（评测 / 论文 / API 统一口径）。
+
+    中文名称只在显示层加（见 main.py 的 LABEL_ZH），避免下游代码
+    还要靠 split()[0] 去拆字符串。
+    """
     if sim >= TH_COPY:
-        return "copy (搬运)"
+        return "copy"
     elif sim >= TH_COVER:
-        return "cover (翻唱)"
+        return "cover"
     else:
-        return "unrelated (不相关)"
+        return "unrelated"

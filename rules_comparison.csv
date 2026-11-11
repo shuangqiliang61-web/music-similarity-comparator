@@ -1,0 +1,7 @@
+﻿rule,song_score_features,train_cv_macro_f1,th_landmark,th_song,held_out_accuracy,held_out_macro_f1
+R1_melody_only_v3,sim_melody,0.6766,0.5059,-0.1639,0.52,0.5186
+R2_rhythm_acf,rhythm_acf_sim,0.6983,0.5059,0.5413,0.6,0.5778
+R3_melody_plus_rhythm,sim_melody+rhythm_acf_sim,0.6735,0.5059,0.1079,0.6,0.5778
+R4_three,sim_melody+rhythm_acf_sim+tempo_ratio,0.7018,0.5059,-0.1791,0.52,0.5155
+R5_four,sim_melody+rhythm_acf_sim+tempo_ratio+sim_rhythm,0.7063,0.4453,-0.2412,0.6,0.5873
+R6_cens_plus_rhythm,sim_cens+rhythm_acf_sim+tempo_ratio,0.7012,0.5059,-0.1568,0.56,0.5488
