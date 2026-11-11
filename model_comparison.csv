@@ -1,0 +1,10 @@
+﻿model,cv_accuracy_mean,cv_accuracy_std,cv_macro_f1_mean,cv_macro_f1_std
+LogReg (v3 baseline),0.6433,0.145,0.6184,0.1502
+LogReg balanced,0.6433,0.1216,0.6145,0.1312
+LogReg + poly2,0.5967,0.122,0.5781,0.1256
+LogReg poly2 balanced,0.5967,0.1145,0.5781,0.1183
+SVC rbf C=1,0.6,0.1116,0.5718,0.1198
+SVC rbf C=10 balanced,0.6033,0.1164,0.579,0.1212
+RandomForest,0.5833,0.1245,0.5739,0.1247
+HistGradientBoosting,0.5733,0.1236,0.5492,0.1278
+kNN k=5,0.5767,0.1216,0.5654,0.1278

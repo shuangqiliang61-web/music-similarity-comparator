@@ -1,0 +1,4 @@
+﻿feature_set,n_features,selected_model,cv_macro_f1,held_out_accuracy,held_out_macro_f1,mean_acc_20_splits,min,max
+A_v3_baseline,3,LogReg (v3 baseline),0.6184,0.72,0.7085,0.672,0.52,0.88
+B_v3_plus_v4,10,RandomForest,0.6168,0.68,0.6789,0.662,0.56,0.84
+C_compact,6,HistGradientBoosting,0.6266,0.76,0.7634,0.648,0.52,0.8

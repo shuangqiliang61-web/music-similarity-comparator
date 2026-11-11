@@ -1,0 +1,408 @@
+{
+  "protocol": "same as optimize_model.py: 25% untouched stratified hold-out; RepeatedStratifiedKFold(5x4) on 75% for model selection by macro-F1; single held-out evaluation; 20 alternative splits for stability",
+  "n_pairs": 100,
+  "seed": 42,
+  "winner_by_20_split_mean": "A_v3_baseline",
+  "results": {
+    "A_v3_baseline": {
+      "features": [
+        "landmark",
+        "sim_timbre",
+        "sim_melody"
+      ],
+      "n_features": 3,
+      "cv_model_scores": [
+        {
+          "model": "LogReg (v3 baseline)",
+          "cv_macro_f1": 0.6184,
+          "cv_accuracy": 0.6433
+        },
+        {
+          "model": "LogReg balanced",
+          "cv_macro_f1": 0.6145,
+          "cv_accuracy": 0.6433
+        },
+        {
+          "model": "LogReg + poly2",
+          "cv_macro_f1": 0.582,
+          "cv_accuracy": 0.6
+        },
+        {
+          "model": "SVC rbf C=10 balanced",
+          "cv_macro_f1": 0.579,
+          "cv_accuracy": 0.6033
+        },
+        {
+          "model": "LogReg poly2 balanced",
+          "cv_macro_f1": 0.5781,
+          "cv_accuracy": 0.5967
+        },
+        {
+          "model": "RandomForest",
+          "cv_macro_f1": 0.5777,
+          "cv_accuracy": 0.5867
+        },
+        {
+          "model": "SVC rbf C=1",
+          "cv_macro_f1": 0.5718,
+          "cv_accuracy": 0.6
+        },
+        {
+          "model": "kNN k=5",
+          "cv_macro_f1": 0.5654,
+          "cv_accuracy": 0.5767
+        },
+        {
+          "model": "HistGradientBoosting",
+          "cv_macro_f1": 0.5392,
+          "cv_accuracy": 0.5667
+        }
+      ],
+      "selected_model": "LogReg (v3 baseline)",
+      "cv_macro_f1_selected": 0.6184,
+      "held_out_accuracy": 0.72,
+      "held_out_macro_f1": 0.7085,
+      "held_out_confusion": {
+        "labels": [
+          "copy",
+          "cover",
+          "unrelated"
+        ],
+        "matrix": [
+          [
+            8,
+            1,
+            0
+          ],
+          [
+            2,
+            4,
+            2
+          ],
+          [
+            0,
+            2,
+            6
+          ]
+        ]
+      },
+      "held_out_per_class": {
+        "copy": {
+          "precision": 0.8,
+          "recall": 0.8889,
+          "f1-score": 0.8421,
+          "support": 9.0
+        },
+        "cover": {
+          "precision": 0.5714,
+          "recall": 0.5,
+          "f1-score": 0.5333,
+          "support": 8.0
+        },
+        "unrelated": {
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1-score": 0.75,
+          "support": 8.0
+        }
+      },
+      "stability_20_splits": {
+        "mean": 0.672,
+        "min": 0.52,
+        "max": 0.88,
+        "scores": [
+          0.64,
+          0.72,
+          0.68,
+          0.64,
+          0.72,
+          0.6,
+          0.64,
+          0.6,
+          0.76,
+          0.68,
+          0.76,
+          0.64,
+          0.6,
+          0.6,
+          0.76,
+          0.68,
+          0.72,
+          0.88,
+          0.6,
+          0.52
+        ]
+      }
+    },
+    "B_v3_plus_v4": {
+      "features": [
+        "landmark",
+        "sim_timbre",
+        "shift_gap",
+        "shift_margin",
+        "shift_std",
+        "shift_is_zero",
+        "tempo_best",
+        "seg_median",
+        "seg_worst",
+        "sim_melody"
+      ],
+      "n_features": 10,
+      "cv_model_scores": [
+        {
+          "model": "RandomForest",
+          "cv_macro_f1": 0.6168,
+          "cv_accuracy": 0.6267
+        },
+        {
+          "model": "LogReg balanced",
+          "cv_macro_f1": 0.5988,
+          "cv_accuracy": 0.6267
+        },
+        {
+          "model": "kNN k=5",
+          "cv_macro_f1": 0.5912,
+          "cv_accuracy": 0.62
+        },
+        {
+          "model": "HistGradientBoosting",
+          "cv_macro_f1": 0.5903,
+          "cv_accuracy": 0.61
+        },
+        {
+          "model": "LogReg (v3 baseline)",
+          "cv_macro_f1": 0.5889,
+          "cv_accuracy": 0.6167
+        },
+        {
+          "model": "LogReg poly2 balanced",
+          "cv_macro_f1": 0.5756,
+          "cv_accuracy": 0.5933
+        },
+        {
+          "model": "LogReg + poly2",
+          "cv_macro_f1": 0.5704,
+          "cv_accuracy": 0.5867
+        },
+        {
+          "model": "SVC rbf C=1",
+          "cv_macro_f1": 0.5696,
+          "cv_accuracy": 0.6033
+        },
+        {
+          "model": "SVC rbf C=10 balanced",
+          "cv_macro_f1": 0.5056,
+          "cv_accuracy": 0.53
+        }
+      ],
+      "selected_model": "RandomForest",
+      "cv_macro_f1_selected": 0.6168,
+      "held_out_accuracy": 0.68,
+      "held_out_macro_f1": 0.6789,
+      "held_out_confusion": {
+        "labels": [
+          "copy",
+          "cover",
+          "unrelated"
+        ],
+        "matrix": [
+          [
+            6,
+            3,
+            0
+          ],
+          [
+            0,
+            4,
+            4
+          ],
+          [
+            0,
+            1,
+            7
+          ]
+        ]
+      },
+      "held_out_per_class": {
+        "copy": {
+          "precision": 1.0,
+          "recall": 0.6667,
+          "f1-score": 0.8,
+          "support": 9.0
+        },
+        "cover": {
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1-score": 0.5,
+          "support": 8.0
+        },
+        "unrelated": {
+          "precision": 0.6364,
+          "recall": 0.875,
+          "f1-score": 0.7368,
+          "support": 8.0
+        }
+      },
+      "stability_20_splits": {
+        "mean": 0.662,
+        "min": 0.56,
+        "max": 0.84,
+        "scores": [
+          0.64,
+          0.68,
+          0.72,
+          0.6,
+          0.56,
+          0.6,
+          0.68,
+          0.6,
+          0.8,
+          0.68,
+          0.72,
+          0.64,
+          0.6,
+          0.68,
+          0.6,
+          0.72,
+          0.68,
+          0.84,
+          0.64,
+          0.56
+        ]
+      }
+    },
+    "C_compact": {
+      "features": [
+        "landmark",
+        "sim_timbre",
+        "shift_gap",
+        "shift_is_zero",
+        "tempo_best",
+        "seg_worst"
+      ],
+      "n_features": 6,
+      "cv_model_scores": [
+        {
+          "model": "HistGradientBoosting",
+          "cv_macro_f1": 0.6266,
+          "cv_accuracy": 0.6467
+        },
+        {
+          "model": "LogReg balanced",
+          "cv_macro_f1": 0.5902,
+          "cv_accuracy": 0.6167
+        },
+        {
+          "model": "RandomForest",
+          "cv_macro_f1": 0.5801,
+          "cv_accuracy": 0.5967
+        },
+        {
+          "model": "LogReg (v3 baseline)",
+          "cv_macro_f1": 0.5776,
+          "cv_accuracy": 0.6067
+        },
+        {
+          "model": "kNN k=5",
+          "cv_macro_f1": 0.5663,
+          "cv_accuracy": 0.5833
+        },
+        {
+          "model": "SVC rbf C=1",
+          "cv_macro_f1": 0.5649,
+          "cv_accuracy": 0.6033
+        },
+        {
+          "model": "LogReg + poly2",
+          "cv_macro_f1": 0.5508,
+          "cv_accuracy": 0.5667
+        },
+        {
+          "model": "LogReg poly2 balanced",
+          "cv_macro_f1": 0.5455,
+          "cv_accuracy": 0.56
+        },
+        {
+          "model": "SVC rbf C=10 balanced",
+          "cv_macro_f1": 0.5007,
+          "cv_accuracy": 0.5267
+        }
+      ],
+      "selected_model": "HistGradientBoosting",
+      "cv_macro_f1_selected": 0.6266,
+      "held_out_accuracy": 0.76,
+      "held_out_macro_f1": 0.7634,
+      "held_out_confusion": {
+        "labels": [
+          "copy",
+          "cover",
+          "unrelated"
+        ],
+        "matrix": [
+          [
+            6,
+            3,
+            0
+          ],
+          [
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            7
+          ]
+        ]
+      },
+      "held_out_per_class": {
+        "copy": {
+          "precision": 1.0,
+          "recall": 0.6667,
+          "f1-score": 0.8,
+          "support": 9.0
+        },
+        "cover": {
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1-score": 0.6667,
+          "support": 8.0
+        },
+        "unrelated": {
+          "precision": 0.7778,
+          "recall": 0.875,
+          "f1-score": 0.8235,
+          "support": 8.0
+        }
+      },
+      "stability_20_splits": {
+        "mean": 0.648,
+        "min": 0.52,
+        "max": 0.8,
+        "scores": [
+          0.8,
+          0.64,
+          0.72,
+          0.64,
+          0.64,
+          0.56,
+          0.64,
+          0.64,
+          0.68,
+          0.64,
+          0.64,
+          0.64,
+          0.6,
+          0.72,
+          0.52,
+          0.72,
+          0.68,
+          0.72,
+          0.56,
+          0.56
+        ]
+      }
+    }
+  }
+}

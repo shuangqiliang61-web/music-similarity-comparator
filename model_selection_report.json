@@ -1,0 +1,153 @@
+{
+  "n_pairs": 100,
+  "features": [
+    "landmark",
+    "sim_timbre",
+    "sim_melody"
+  ],
+  "protocol": "25% stratified hold-out untouched during model selection; RepeatedStratifiedKFold(5x4) on the remaining 75% for selection; single evaluation on hold-out; 20 alternative splits for stability",
+  "seed": 42,
+  "n_selection": 75,
+  "n_test": 25,
+  "model_comparison_cv": [
+    {
+      "model": "LogReg (v3 baseline)",
+      "cv_accuracy_mean": 0.6433,
+      "cv_accuracy_std": 0.145,
+      "cv_macro_f1_mean": 0.6184,
+      "cv_macro_f1_std": 0.1502
+    },
+    {
+      "model": "LogReg balanced",
+      "cv_accuracy_mean": 0.6433,
+      "cv_accuracy_std": 0.1216,
+      "cv_macro_f1_mean": 0.6145,
+      "cv_macro_f1_std": 0.1312
+    },
+    {
+      "model": "LogReg + poly2",
+      "cv_accuracy_mean": 0.5967,
+      "cv_accuracy_std": 0.122,
+      "cv_macro_f1_mean": 0.5781,
+      "cv_macro_f1_std": 0.1256
+    },
+    {
+      "model": "LogReg poly2 balanced",
+      "cv_accuracy_mean": 0.5967,
+      "cv_accuracy_std": 0.1145,
+      "cv_macro_f1_mean": 0.5781,
+      "cv_macro_f1_std": 0.1183
+    },
+    {
+      "model": "SVC rbf C=1",
+      "cv_accuracy_mean": 0.6,
+      "cv_accuracy_std": 0.1116,
+      "cv_macro_f1_mean": 0.5718,
+      "cv_macro_f1_std": 0.1198
+    },
+    {
+      "model": "SVC rbf C=10 balanced",
+      "cv_accuracy_mean": 0.6033,
+      "cv_accuracy_std": 0.1164,
+      "cv_macro_f1_mean": 0.579,
+      "cv_macro_f1_std": 0.1212
+    },
+    {
+      "model": "RandomForest",
+      "cv_accuracy_mean": 0.5833,
+      "cv_accuracy_std": 0.1245,
+      "cv_macro_f1_mean": 0.5739,
+      "cv_macro_f1_std": 0.1247
+    },
+    {
+      "model": "HistGradientBoosting",
+      "cv_accuracy_mean": 0.5733,
+      "cv_accuracy_std": 0.1236,
+      "cv_macro_f1_mean": 0.5492,
+      "cv_macro_f1_std": 0.1278
+    },
+    {
+      "model": "kNN k=5",
+      "cv_accuracy_mean": 0.5767,
+      "cv_accuracy_std": 0.1216,
+      "cv_macro_f1_mean": 0.5654,
+      "cv_macro_f1_std": 0.1278
+    }
+  ],
+  "selected_model": "LogReg (v3 baseline)",
+  "selection_criterion": "mean macro-F1 over repeated 5-fold CV",
+  "held_out_accuracy": 0.72,
+  "held_out_macro_f1": 0.7085,
+  "held_out_confusion": {
+    "labels": [
+      "copy",
+      "cover",
+      "unrelated"
+    ],
+    "matrix": [
+      [
+        8,
+        1,
+        0
+      ],
+      [
+        2,
+        4,
+        2
+      ],
+      [
+        0,
+        2,
+        6
+      ]
+    ]
+  },
+  "held_out_per_class": {
+    "copy": {
+      "precision": 0.8,
+      "recall": 0.8889,
+      "f1-score": 0.8421,
+      "support": 9.0
+    },
+    "cover": {
+      "precision": 0.5714,
+      "recall": 0.5,
+      "f1-score": 0.5333,
+      "support": 8.0
+    },
+    "unrelated": {
+      "precision": 0.75,
+      "recall": 0.75,
+      "f1-score": 0.75,
+      "support": 8.0
+    }
+  },
+  "stability_20_splits": {
+    "scores": [
+      0.64,
+      0.72,
+      0.68,
+      0.64,
+      0.72,
+      0.6,
+      0.64,
+      0.6,
+      0.76,
+      0.68,
+      0.76,
+      0.64,
+      0.6,
+      0.6,
+      0.76,
+      0.68,
+      0.72,
+      0.88,
+      0.6,
+      0.52
+    ],
+    "mean": 0.672,
+    "min": 0.52,
+    "max": 0.88
+  },
+  "v3_logreg_5fold_cv_for_reference": 0.72
+}
